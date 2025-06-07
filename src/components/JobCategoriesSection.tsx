@@ -26,7 +26,8 @@ const JobCategoriesSection = () => {
       location: "New Delhi",
       attendees: "500+ Expected",
       type: "Conference",
-      category: "Leadership"
+      category: "Leadership",
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop"
     },
     {
       title: "Digital Fundraising Workshop",
@@ -35,7 +36,8 @@ const JobCategoriesSection = () => {
       location: "Mumbai",
       attendees: "150+ Expected",
       type: "Workshop",
-      category: "Fundraising"
+      category: "Fundraising",
+      image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=400&h=250&fit=crop"
     },
     {
       title: "Sustainable Development Goals Forum",
@@ -44,7 +46,8 @@ const JobCategoriesSection = () => {
       location: "Bangalore",
       attendees: "300+ Expected", 
       type: "Forum",
-      category: "Policy"
+      category: "Policy",
+      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=250&fit=crop"
     }
   ];
 
@@ -82,39 +85,58 @@ const JobCategoriesSection = () => {
             Connect, learn, and grow with the NGO community through workshops, conferences, and networking events
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {upcomingEvents.map((event, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white">
-                <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
+              <Card key={index} className="group overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={event.image} 
+                    alt={event.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <span className="inline-block bg-white/90 backdrop-blur-sm text-gray-800 text-xs px-3 py-1 rounded-full font-semibold shadow-md">
                       {event.type}
                     </span>
-                    <span className="text-sm text-gray-500">{event.category}</span>
                   </div>
-                  <CardTitle className="text-lg font-bold text-gray-900 line-clamp-2">
+                  <div className="absolute top-4 right-4">
+                    <span className="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                      {event.category}
+                    </span>
+                  </div>
+                </div>
+                
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {event.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 line-clamp-2">
+                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
                     {event.description}
                   </CardDescription>
                 </CardHeader>
+                
                 <CardContent className="pt-0">
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-3 mb-6">
                     <div className="flex items-center text-sm text-gray-600">
-                      <Calendar className="w-4 h-4 mr-2 text-blue-600" />
-                      {event.date}
+                      <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center mr-3">
+                        <Calendar className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <span className="font-medium">{event.date}</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-2 text-green-600" />
-                      {event.location}
+                      <div className="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center mr-3">
+                        <MapPin className="w-4 h-4 text-green-600" />
+                      </div>
+                      <span className="font-medium">{event.location}</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
-                      <Users className="w-4 h-4 mr-2 text-purple-600" />
-                      {event.attendees}
+                      <div className="w-8 h-8 bg-purple-50 rounded-full flex items-center justify-center mr-3">
+                        <Users className="w-4 h-4 text-purple-600" />
+                      </div>
+                      <span className="font-medium">{event.attendees}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
                     Register Now
                   </Button>
                 </CardContent>
@@ -122,8 +144,8 @@ const JobCategoriesSection = () => {
             ))}
           </div>
           
-          <div className="text-center mt-8">
-            <Button variant="outline" size="lg" className="bg-white hover:bg-gray-50">
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" className="bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-blue-300 font-semibold px-8 py-3">
               View All Events
             </Button>
           </div>
